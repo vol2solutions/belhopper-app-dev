@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BelHopper Rewards</title>
+
+<style>
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  font-family:Arial,sans-serif;
+  background: linear-gradient(135deg, #0a1f44, #0f2f6b, #f4b400);
+  color:#fff;
+  min-height:100vh;
+}
+
+/* GLASS */
+.glass{
+  background: rgba(10, 31, 68, 0.4);
+  backdrop-filter: blur(12px);
+  border-radius:16px;
+  border:1px solid rgba(255,255,255,0.15);
+  box-shadow:0 8px 32px rgba(0,0,0,0.4);
+}
+
+/* NAV */
+nav{
+  width:90%;
+  margin:20px auto;
+  padding:15px 30px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+nav ul{
+  display:flex;
+  list-style:none;
+  gap:20px;
+}
+
+nav a{
+  color:#fff;
+  text-decoration:none;
+}
+
+nav a:hover{
+  text-decoration:underline;
+}
+
+.logo-header{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.logo-header img{
+  height:55px;
+}
+
+.logo-header h1{
+  font-size:18px;
+}
+
+.tagline{
+  font-size:11px;
+  opacity:0.8;
+}
+
+/* MAIN */
+.rewards-container{
+  width:90%;
+  max-width:700px;
+  margin:40px auto;
+  padding:40px;
+  text-align:center;
+}
+
+.rewards-container h1{
+  margin-bottom:20px;
+  font-size:2.2rem;
+}
+
+.rewards-desc{
+  line-height:1.7;
+  margin-bottom:30px;
+  opacity:0.9;
+}
+
+/* FORM */
+.points-form{
+  margin-top:20px;
+}
+
+.points-form input{
+  width:100%;
+  padding:14px;
+  border:none;
+  border-radius:10px;
+  margin-bottom:15px;
+}
+
+.btn{
+  width:100%;
+  padding:14px;
+  border:none;
+  border-radius:10px;
+  background:#f4b400;
+  color:#0a1f44;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+.btn:hover{
+  background:#d99c00;
+}
+
+.result{
+  margin-top:25px;
+  font-size:20px;
+  font-weight:bold;
+  color:#f4b400;
+}
+
+/* FOOTER */
+footer{
+  text-align:center;
+  padding:20px;
+  font-size:12px;
+}
+
+/* MOBILE */
+@media(max-width:768px){
+
+  nav{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:10px;
+  }
+
+  nav ul{
+    flex-direction:column;
+    width:100%;
+  }
+
+  .rewards-container{
+    padding:25px;
+  }
+
+  .rewards-container h1{
+    font-size:1.8rem;
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- NAV -->
+<nav class="glass">
+
+  <div class="logo-header">
+    <img src="images/Logo-trans.png">
+
+    <div>
+      <h1>BELHOPPER</h1>
+      <div class="tagline">Your Ride. Your Way.</div>
+    </div>
+  </div>
+
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="rules.html">Rules</a></li>
+    <li><a href="process.html">How it Works</a></li>
+  </ul>
+
+</nav>
+
+<!-- REWARDS -->
+<section class="rewards-container glass">
+
+  <h1>🎁 BelHopper Rewards</h1>
+
+  <p class="rewards-desc">
+    Earn rewards every time you ride with BelHopper 🚖<br><br>
+
+    For every completed ride request made through the BelHopper app,
+    you earn <strong>1 Reward Point</strong>.<br><br>
+
+    The more you ride, the more points you collect — and exciting
+    loyalty rewards, discounts and future ride specials are coming soon.
+  </p>
+
+  <!-- FORM -->
+  <div class="points-form">
+
+    <input
+      type="tel"
+      id="phone"
+      placeholder="Enter your phone number"
+    >
+
+    <button class="btn" onclick="checkPoints()">
+      Check Points
+    </button>
+
+    <div id="result" class="result"></div>
+
+  </div>
+
+</section>
+
+<footer>
+  Developed by Vol.2 Solutions
+</footer>
+
+<script>
+
+async function checkPoints(){
+
+  const phone = document.getElementById("phone").value.trim();
+  const result = document.getElementById("result");
+
+  // VALIDATION
+  const phonePattern = /^0\d{9}$/;
+
+  if(!phonePattern.test(phone)){
+    result.innerHTML = "Please enter a valid phone number";
+    return;
+  }
+
+  result.innerHTML = "Checking points...";
+
+  try{
+
+    // FETCH DATA FROM GOOGLE SHEETS
+    const response = await fetch(
+      "YOUR_GOOGLE_SCRIPT_URL_HERE"
+    );
+
+    const data = await response.json();
+
+    // REMOVE FIRST 0 FROM USER NUMBER
+    const formattedPhone = phone.substring(1);
+
+    // COUNT MATCHES
+    let points = 0;
+
+    data.forEach(row => {
+
+      // SHEET PHONE COLUMN
+      const sheetPhone = String(row.phone).trim();
+
+      if(sheetPhone === formattedPhone){
+        points++;
+      }
+
+    });
+
+    result.innerHTML = `
+      🎉 You currently have <strong>${points}</strong> reward points.
+    `;
+
+  }
+  catch(error){
+
+    console.error(error);
+
+    result.innerHTML = `
+      Unable to check points right now.
+    `;
+  }
+
+}
+
+</script>
+
+</body>
+</html>
