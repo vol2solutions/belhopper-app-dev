@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BelHopper</title>
+
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #0a1f44, #0f2f6b, #f4b400);
+  color: #fff;
+  min-height: 100vh;
+}
+
+/* GLASS */
+.glass {
+  background: rgba(10, 31, 68, 0.4);
+  backdrop-filter: blur(12px);
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.15);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+}
+
+/* NAV */
+nav {
+  width: 90%;
+  margin: 20px auto;
+  padding: 15px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+  gap: 20px;
+}
+
+.logo-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo-header img {
+  height: 55px;
+  filter: drop-shadow(0 0 6px rgba(244,180,0,0.5));
+}
+
+.logo-header h1 {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.tagline {
+  font-size: 11px;
+  opacity: 0.8;
+}
+
+nav a {
+  color: #fff;
+  text-decoration: none;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+/* HERO */
+.hero {
+  width: 90%;
+  margin: 30px auto;
+  padding: 40px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  align-items: center;
+}
+
+.hero h1 {
+  font-size: 2.5rem;
+}
+
+/* FORM */
+.booking-form {
+  padding: 25px;
+}
+
+.booking-form input,
+.booking-form select {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 12px;
+  border-radius: 8px;
+  border: none;
+}
+
+/* BUTTON */
+.btn {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+  background: #f4b400;
+  color: #0a1f44;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background: #d99c00;
+}
+
+.status {
+  margin-top: 10px;
+  font-size: 0.9rem;
+  color: #d1fae5;
+}
+
+/* SPECIALS */
+.specials {
+  width: 90%;
+  margin: 40px auto;
+  padding: 40px;
+  text-align: center;
+}
+
+.specials-desc {
+  margin-top: 10px;
+  font-size: 14px;
+  opacity: 0.85;
+}
+
+  /* PRICE LIST */
+.price-image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+
+.price-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+/* REMOVED */ /*
+.table-container {
+  overflow-x: auto;
+  margin-top: 20px;
+}
+
+.price-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 700px;
+}
+
+.price-table th,
+.price-table td {
+  padding: 12px;
+  text-align: center;
+  border: 1px solid rgba(255,255,255,0.2);
+}
+
+.price-table th {
+  background: rgba(0,0,0,0.25);
+}
+
+.price-table td:first-child {
+  text-align: left;
+  font-weight: 600;
+}
+
+.price-table tr:nth-child(even) {
+  background: rgba(255,255,255,0.05);
+}
+
+.price-table tr:hover {
+  background: rgba(244,180,0,0.25);
+}
+
+.section-row td {
+  background: rgba(244,180,0,0.4);
+  font-weight: bold;
+  text-align: left;
+} */
+
+/* PRICE CHECK */
+.price-check {
+  width: 90%;
+  margin: 40px auto;
+  padding: 40px;
+  text-align: center;
+}
+
+.price-desc {
+  margin-top: 10px;
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+.price-form {
+  margin-top: 25px;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.price-form input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 12px;
+  border-radius: 8px;
+  border: none;
+}
+
+.price-result {
+  margin-top: 20px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #f4b400;
+}
+
+/* Disclaimer text */
+.price-result small {
+  display: block;
+  font-size: 12px;
+  font-weight: normal;
+  margin-top: 8px;
+  opacity: 0.8;
+}
+
+/* FEATURES */
+.features, .price-list, .cta {
+  width: 90%;
+  margin: 40px auto;
+  padding: 40px;
+  text-align: center;
+}
+
+.feature-grid {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+  gap: 20px;
+}
+
+/* CTA */
+.whatsapp-btn {
+  display: inline-block;
+  margin-top: 15px;
+  padding: 12px 25px;
+  background: #25D366;
+  border-radius: 10px;
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* MOBILE TWEAK */
+@media(max-width: 768px) {
+  .price-table {
+    font-size: 12px;
+  }
+
+  .price-table th,
+  .price-table td {
+    padding: 8px;
+  }
+}
+  
+/* CTA */
+.cta {
+  width: 90%;
+  margin: 40px auto;
+  padding: 40px;
+  text-align: center;
+}
+
+.whatsapp-btn {
+  display: inline-block;
+  margin-top: 15px;
+  padding: 12px 25px;
+  background: #25D366;
+  border-radius: 10px;
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* FOOTER */
+footer {
+  text-align: center;
+  padding: 20px;
+  margin: 20px;
+}
+
+/* MOBILE */
+@media(max-width: 768px) {
+
+  /* NAV FIX */
+  nav {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 15px;
+  }
+
+  nav ul {
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+  }
+
+  /* LOGO + TITLE */
+  .logo-header {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .logo-header h1 {
+    font-size: 16px;
+    white-space: normal; /* allow wrapping on mobile */
+  }
+
+  .logo-header img {
+    height: 45px;
+  }
+
+  /* HERO FIX */
+  .hero {
+    grid-template-columns: 1fr;
+    padding: 20px;
+    gap: 20px;
+  }
+
+  .hero h1 {
+    font-size: 1.8rem;
+  }
+
+  /* FORM FIX */
+  .booking-form {
+    padding: 15px;
+  }
+
+  .booking-form input,
+  .booking-form select {
+    padding: 10px;
+  }
+
+  /* SECTIONS */
+  .price-list,
+  .features,
+  .cta {
+    padding: 20px;
+  }
+
+  /* IMAGE FIX */
+  .price-image-container img {
+    max-width: 100%;
+    border-radius: 12px;
+  }
+
+  /* FEATURE GRID */
+  .feature-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* BUTTON */
+  .btn {
+    padding: 14px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAV -->
+<nav class="glass">
+  <div class="logo-header">
+    <img src="images/Logo-trans.png">
+    <div>
+      <h1>BELHOPPER</h1>
+      <div class="tagline">Your Ride. Your Way.</div>
+    </div>
+  </div>
+
+  <ul>
+    <li><a href="rules.html">Rules</a></li>
+    <li><a href="feedbackandcomplaints.html">Feedback</a></li>
+    <li><a href="process.html">How it Works</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero glass">
+
+  <div>
+    <h1>Your Ride. Your Way.</h1>
+    <p>Request a ride instantly and connect with drivers in Belhar.</p>
+  </div>
+
+  <div class="booking-form glass">
+    <h3>Book Your Trip</h3>
+
+    <input type="text" id="name" placeholder="Full Name">
+    <input type="tel" id="phone" placeholder="Phone Number (e.g. 0821234567)">
+    <input type="text" id="pickup" placeholder="Pickup Location">
+    <input type="text" id="dropoff" placeholder="Drop-off Location">
+
+    <select id="time">
+      <option>Immediately</option>
+      <option>Later</option>
+    </select>
+
+    <input type="text" id="passenger" placeholder="Passengers">
+
+    <select id="return">
+      <option disabled selected>Return Trip</option>
+      <option>No</option>
+      <option>Yes</option>
+    </select>
+
+    <button class="btn" onclick="sendRideRequest()">Send via WhatsApp</button>
+  </div>
+
+</section>
+
+<!-- SPECIALS -->
+<section class="specials glass">
+  <h2>🔥 Specials</h2>
+  <p class="specials-desc">
+    Exciting ride deals are on the way! 🚖💨<br>
+    Stay tuned for discounted trips, loyalty rewards system for rides booked via the app, and exclusive BelHopper offers.
+  </p>
+</section>
+
+<!-- PRICE -->
+<!-- PRICE -->
+<section class="price-list glass">
+  <h2>Price List</h2>
+
+  <div class="price-image-container">
+    <img src="images/price-list.jpeg" alt="Price List" class="price-image">
+  </div>
+</section>
+
+<!-- PRICE CHECK -->
+<section class="price-check glass">
+  <h2>Check Your Fare</h2>
+  <p class="price-desc">
+    Get an estimated price for your trip before booking.
+  </p>
+
+  <div class="price-form">
+
+    <!-- Pickup -->
+    <input list="location-options" id="price-pickup" placeholder="Select Pickup Location">
+
+    <!-- Dropoff -->
+    <input list="location-options" id="price-dropoff" placeholder="Select Drop-off Location">
+
+    <!-- Shared Location List -->
+    <datalist id="location-options">
+
+      <!-- INTERNAL -->
+      <option value="Self-Help">
+      <option value="Extension">
+      <option value="Musicals">
+      <option value="Toilet City">
+      <option value="Old Belhar">
+
+      <!-- EXTERNAL -->
+      <option value="The Hague">
+      <option value="Roosendal">
+      <option value="Leiden">
+      <option value="Voorburg">
+      <option value="Wesbank">
+      <option value="Kuils River">
+      <option value="Highbury">
+      <option value="Zevenwacht">
+      <option value="Blackheath">
+      <option value="Eersteriver">
+      <option value="Access Park">
+      <option value="Ravensmead">
+      <option value="Tygerberg Hosp">
+      <option value="Stikland">
+      <option value="Bellville">
+      <option value="Bellville South">
+      <option value="Parow">
+      <option value="Parow Ind">
+      <option value="Goodwood">
+      <option value="Ryterwacht">
+      <option value="Elsiesriver">
+      <option value="Airport / Airport Ind">
+      <option value="N1 City">
+      <option value="Tygervalley">
+      <option value="Durbanville">
+      <option value="Cape Gate">
+      <option value="Brackenfell">
+      <option value="Kraaifontein">
+      <option value="Mitchells Plain">
+      <option value="Kenilworth">
+      <option value="Claremont">
+      <option value="Century City">
+      <option value="Cape Town">
+
+    </datalist>
+
+    <!-- Result -->
+    <div id="price-result" class="price-result"></div>
+
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features glass">
+  <h2>Why Choose BelHopper</h2>
+
+  <div class="feature-grid">
+    <div class="glass">Fast Pickup</div>
+    <div class="glass">Trusted Local Drivers</div>
+    <div class="glass">Ride On Demand</div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta glass">
+  <h2>Join the Ride Network</h2>
+  <p>Request rides instantly via WhatsApp</p>
+
+  <a href="https://chat.whatsapp.com/JwwJuNElLOU9CXlw9WYmQH"
+   class="whatsapp-btn" 
+   target="_blank">
+   Join WhatsApp Group
+</a>
+  
+</section>
+
+<footer style="text-align:center; padding:20px; font-size:12px;">
+  Developed by Vol.2 Solutions
+</footer>
+
+<script>
+function sendRideRequest() {
+  const name = document.getElementById("name").value.trim();
+  const phone = document.getElementById("phone").value.trim();
+  const pickup = document.getElementById("pickup").value.trim();
+  const dropoff = document.getElementById("dropoff").value.trim();
+  const time = document.getElementById("time").value;
+  const passenger = document.getElementById("passenger").value.trim();
+  const returnTrip = document.getElementById("return").value;
+
+  // VALIDATION
+  if (!name || !phone || !pickup || !dropoff || !passenger) {
+    alert("Please fill in all fields");
+    return;
+  }
+
+  const phonePattern = /^0\d{9}$/;
+
+  if (!phonePattern.test(phone)) {
+    alert("Enter a valid phone number (e.g. 0821234567)");
+    return;
+  }
+
+  // DATA OBJECT
+  const rideData = {
+    name,
+    phone,
+    pickup,
+    dropoff,
+    passenger,
+    time,
+    returnTrip
+  };
+
+  // SEND TO GOOGLE SHEETS
+  fetch("https://script.google.com/macros/s/AKfycbwgYCzw9G_-sPRp1ayTPUiHqva0OppBLEdWozY22KcDES1d7p9Dy4EbS-xMSKsopy1JQw/exec", {
+    method: "POST",
+    body: JSON.stringify(rideData)
+  })
+  .catch(err => console.error("Sheet error:", err));
+
+  // WHATSAPP MESSAGE
+  const message =
+`🚖 BelHopper Ride Request
+
+Name: ${name}
+Phone: ${phone}
+Pickup: ${pickup}
+Dropoff: ${dropoff}
+Passengers: ${passenger}
+Time: ${time}
+Return Trip: ${returnTrip}`;
+
+  // ENCODE MESSAGE
+  const encodedMessage = encodeURIComponent(message);
+
+  // OPEN WHATSAPP DIRECTLY
+  window.open(`https://wa.me/?text=${encodedMessage}`, "_blank");
+
+  // SAVE PHONE
+  localStorage.setItem("phone", phone);
+
+  // CLEAR FORM
+  clearForm();
+}
+
+
+// 🔥 FORM RESET FUNCTION
+function clearForm() {
+  document.getElementById("name").value = "";
+  document.getElementById("pickup").value = "";
+  document.getElementById("dropoff").value = "";
+  document.getElementById("passenger").value = "";
+  document.getElementById("time").selectedIndex = 0;
+  document.getElementById("return").selectedIndex = 0;
+
+  // Keep phone (important for repeat users)
+  document.getElementById("phone").value = localStorage.getItem("phone") || "";
+}
+
+// 🎯 EVENT LISTENERS (AUTO CALCULATE)
+document.getElementById("price-pickup").addEventListener("input", autoCalculate);
+document.getElementById("price-dropoff").addEventListener("input", autoCalculate);
+
+
+// 🎯 AUTO CALCULATE
+document.getElementById("price-pickup").addEventListener("input", autoCalculate);
+document.getElementById("price-dropoff").addEventListener("input", autoCalculate);
+
+
+// 🎯 INTERNAL AREAS
+const internalAreas = [
+  "Self-Help",
+  "Extension",
+  "Musicals",
+  "Toilet City",
+  "Old Belhar"
+];
+
+
+// 🎯 INTERNAL EXACT PRICING
+const internalPrices = {
+  "Self-Help-Self-Help": "R35",
+  "Self-Help-Extension": "R40",
+  "Self-Help-Musicals": "R40",
+  "Self-Help-Toilet City": "R40",
+  "Self-Help-Old Belhar": "R55",
+
+  "Extension-Extension": "R35",
+  "Extension-Self-Help": "R40",
+  "Extension-Musicals": "R40",
+  "Extension-Toilet City": "R40",
+  "Extension-Old Belhar": "R50",
+
+  "Musicals-Musicals": "R35",
+  "Musicals-Self-Help": "R40",
+  "Musicals-Extension": "R40",
+  "Musicals-Toilet City": "R40",
+  "Musicals-Old Belhar": "R45",
+
+  "Toilet City-Toilet City": "R35",
+  "Toilet City-Self-Help": "R40",
+  "Toilet City-Musicals": "R40",
+  "Toilet City-Extension": "R40",
+  "Toilet City-Old Belhar": "R50",
+
+  "Old Belhar-Old Belhar": "R35",
+  "Old Belhar-Self-Help": "R40",
+  "Old Belhar-Musicals": "R40",
+  "Old Belhar-Extension": "R40",
+  "Old Belhar-Toilet City": "R50"
+};
+
+
+// 🎯 EXTERNAL PRICING (BASED ON BELHAR)
+const externalPrices = {
+  "The Hague": "R55 - R65",
+  "Roosendal": "R55 - R70",
+  "Leiden": "R60 - R75",
+  "Voorburg": "R60 - R75",
+  "Wesbank": "R65 - R90",
+  "Kuils River": "R95 - R120",
+  "Highbury": "R70 - R90",
+  "Zevenwacht": "R90 - R110",
+  "Blackheath": "R100 - R120",
+  "Eersteriver": "R120 - R160",
+  "Access Park": "R90 - R100",
+  "Ravensmead": "R65 - R85",
+  "Tygerberg Hosp": "R65 - R85",
+  "Stikland": "R85 - R95",
+  "Bellville": "R85 - R105",
+  "Bellville South": "R80 - R90",
+  "Parow": "R80 - R110",
+  "Parow Ind": "R65 - R85",
+  "Goodwood": "R110 - R150",
+  "Ryterwacht": "R110 - R120",
+  "Elsiesriver": "R70 - R100",
+  "Airport / Airport Ind": "R75 - R100",
+  "N1 City": "R120 - R140",
+  "Tygervalley": "R120 - R135",
+  "Durbanville": "R125 - R145",
+  "Cape Gate": "R140 - R160",
+  "Brackenfell": "R120 - R160",
+  "Kraaifontein": "R140 - R165",
+  "Mitchells Plain": "R120 - R160",
+  "Kenilworth": "R150 - R170",
+  "Claremont": "R140 - R160",
+  "Century City": "R170 - R190",
+  "Cape Town": "R190 - R210"
+};
+
+
+// 🎯 AUTO CALC FUNCTION
+function autoCalculate() {
+  const pickup = document.getElementById("price-pickup").value.trim();
+  const dropoff = document.getElementById("price-dropoff").value.trim();
+  const result = document.getElementById("price-result");
+
+  if (!pickup || !dropoff) {
+    result.innerHTML = "";
+    return;
+  }
+
+  if (pickup === dropoff) {
+    result.innerHTML = "💰 Estimated Fare: <strong>R35</strong>";
+    return;
+  }
+
+  const price = getPrice(pickup, dropoff);
+
+  result.innerHTML = `
+    💰 Estimated Fare: <strong>${price}</strong>
+    <small>Final price will be confirmed with your driver.</small>
+  `;
+}
+
+
+// 🎯 CORE PRICING ENGINE
+function getPrice(pickup, dropoff) {
+
+  const key = `${pickup}-${dropoff}`;
+  const reverseKey = `${dropoff}-${pickup}`;
+
+  // ✅ INTERNAL EXACT
+  if (internalPrices[key]) return internalPrices[key];
+  if (internalPrices[reverseKey]) return internalPrices[reverseKey];
+
+  const pickupInternal = internalAreas.includes(pickup);
+  const dropoffInternal = internalAreas.includes(dropoff);
+
+  // ✅ INTERNAL → EXTERNAL
+  if (pickupInternal && externalPrices[dropoff]) {
+    return externalPrices[dropoff];
+  }
+
+  // ✅ EXTERNAL → INTERNAL
+  if (dropoffInternal && externalPrices[pickup]) {
+    return externalPrices[pickup];
+  }
+
+  // ❗ EXTERNAL → EXTERNAL (not defined yet)
+  return "Contact driver for quote";
+}
+  
+</script>
+</body>
+</html>

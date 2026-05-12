@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Feedback & Complaints - BelHopper</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background: linear-gradient(135deg, #0a1f44, #0f2f6b, #f4b400);
+  color: #fff;
+  min-height: 100vh;
+}
+
+/* GLASS (MATCH MAIN APP) */
+.glass {
+  background: rgba(10, 31, 68, 0.4);
+  backdrop-filter: blur(12px);
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.15);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+}
+
+/* NAV */
+nav {
+  width: 90%;
+  margin: 20px auto;
+  padding: 15px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo-header img {
+  height: 55px;
+  filter: drop-shadow(0 0 6px rgba(244,180,0,0.5));
+}
+
+.logo-header h1 {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.tagline {
+  font-size: 11px;
+  opacity: 0.8;
+}
+
+nav a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+/* CONTAINER */
+.container {
+  width: 90%;
+  margin: 30px auto;
+  padding: 30px;
+}
+
+/* HEADER */
+.header {
+  text-align: center;
+  padding: 25px;
+  margin-bottom: 20px;
+}
+
+.header h1 {
+  font-size: 2rem;
+}
+
+.header p {
+  margin-top: 10px;
+  opacity: 0.9;
+}
+
+/* FORM CARD */
+.form-card {
+  padding: 25px;
+  max-width: 650px;
+  margin: 0 auto;
+}
+
+.form-card h2 {
+  margin-bottom: 10px;
+}
+
+.form-card p {
+  margin-bottom: 20px;
+  line-height: 1.6;
+  opacity: 0.9;
+}
+
+/* FORM */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+label {
+  font-weight: bold;
+  font-size: 14px;
+}
+
+input, select, textarea {
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  font-size: 14px;
+}
+
+textarea {
+  min-height: 140px;
+  resize: vertical;
+}
+
+/* BUTTON */
+button {
+  margin-top: 10px;
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  background: #bfffe0;
+  color: #0a1f44;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  background: #8ff0c7;
+}
+
+/* MOBILE */
+@media(max-width: 768px) {
+  nav {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .container {
+    padding: 15px;
+  }
+
+  .header h1 {
+    font-size: 1.6rem;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAV -->
+<nav class="glass">
+  <div class="logo-header">
+    <img src="images/Logo-trans.png">
+    <div>
+      <h1>BELHOPPER</h1>
+      <div class="tagline">Your Ride. Your Way.</div>
+    </div>
+  </div>
+
+  <a href="index.html">← Back</a>
+</nav>
+
+<!-- CONTENT -->
+<div class="container">
+
+  <!-- HEADER -->
+  <div class="header glass">
+    <h1>Feedback & Complaints</h1>
+    <p>We value every voice in our community</p>
+  </div>
+
+  <!-- FORM -->
+  <div class="form-card glass">
+
+    <h2>Send Us Your Message</h2>
+    <p>
+      Feedback helps us improve. Complaints help us fix issues quickly.
+      All submissions are sent directly via WhatsApp.
+    </p>
+
+    <form id="feedbackForm">
+
+      <label>Name</label>
+      <input type="text" id="name" required>
+
+      <label>Contact Number</label>
+      <input type="tel" id="contact" required>
+
+      <label>Type</label>
+      <select id="type" required>
+        <option value="">Select option</option>
+        <option value="Feedback">Feedback</option>
+        <option value="Complaint">Complaint</option>
+      </select>
+
+      <label>Driver (Optional)</label>
+      <input type="text" id="driver" placeholder="Enter driver name">
+
+      <label>Message</label>
+      <textarea id="message" required></textarea>
+
+      <button type="submit">Submit via WhatsApp</button>
+
+    </form>
+
+  </div>
+
+</div>
+
+<script>
+document.getElementById("feedbackForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  const name = document.getElementById("name").value;
+  const contact = document.getElementById("contact").value;
+  const type = document.getElementById("type").value;
+  const driver = document.getElementById("driver").value;
+  const message = document.getElementById("message").value;
+
+  const whatsappNumber = "27798526921";
+
+  const fullMessage =
+`🚖 BelHopper ${type}
+
+Name: ${name}
+Contact: ${contact}
+Driver: ${driver || "N/A"}
+
+Message:
+${message}`;
+
+  const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(fullMessage)}`;
+
+  window.open(url, "_blank");
+});
+</script>
+
+</body>
+</html>

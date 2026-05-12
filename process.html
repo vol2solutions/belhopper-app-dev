@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How It Works - BelHopper</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background: linear-gradient(135deg, #0a1f44, #0f2f6b, #f4b400);
+  color: #fff;
+  min-height: 100vh;
+}
+
+/* GLASS (MATCH ENTIRE APP) */
+.glass {
+  background: rgba(10, 31, 68, 0.4);
+  backdrop-filter: blur(12px);
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.15);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+}
+
+/* NAV */
+nav {
+  width: 90%;
+  margin: 20px auto;
+  padding: 15px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo-header img {
+  height: 55px;
+  filter: drop-shadow(0 0 6px rgba(244,180,0,0.5));
+}
+
+.logo-header h1 {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.tagline {
+  font-size: 11px;
+  opacity: 0.8;
+}
+
+nav a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+/* CONTAINER */
+.container {
+  width: 90%;
+  margin: 30px auto;
+  padding: 30px;
+  text-align: center;
+}
+
+/* HEADER */
+.header {
+  padding: 30px;
+  margin-bottom: 20px;
+}
+
+.header h1 {
+  font-size: 2rem;
+}
+
+.header p {
+  margin-top: 10px;
+  opacity: 0.9;
+}
+
+/* STEPS GRID */
+.steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+/* STEP CARD */
+.step-card {
+  padding: 20px;
+  text-align: center;
+  transition: 0.3s;
+}
+
+.step-card:hover {
+  transform: translateY(-5px);
+}
+
+.step-card img {
+  width: 100%;
+  max-width: 200px;
+  border-radius: 12px;
+  margin-bottom: 12px;
+}
+
+.step-card h3 {
+  margin-bottom: 10px;
+  color: #bfffe0;
+}
+
+.step-card p {
+  font-size: 14px;
+  line-height: 1.5;
+  opacity: 0.9;
+}
+
+/* MOBILE */
+@media(max-width: 768px) {
+  nav {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .container {
+    padding: 15px;
+  }
+
+  .header h1 {
+    font-size: 1.6rem;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAV -->
+<nav class="glass">
+  <div class="logo-header">
+    <img src="images/Logo-trans.png">
+    <div>
+      <h1>BELHOPPER</h1>
+      <div class="tagline">Your Ride. Your Way.</div>
+    </div>
+  </div>
+
+  <a href="index.html">← Back</a>
+</nav>
+
+<!-- CONTENT -->
+<div class="container">
+
+  <!-- HEADER -->
+  <div class="header glass">
+    <h1>How It Works</h1>
+    <p>Booking a ride in 3 simple steps</p>
+  </div>
+
+  <!-- STEPS -->
+  <div class="steps">
+
+    <div class="step-card glass">
+      <img src="images/Step1.jpg" alt="Step 1">
+      <h3>1. Enter Trip Details</h3>
+      <p>Add pickup, drop-off, passengers, and time directly on the booking form.</p>
+    </div>
+
+    <div class="step-card glass">
+      <img src="images/Step2.jpg" alt="Step 2">
+      <h3>2. Send Request</h3>
+      <p>Click the WhatsApp button to send your ride request instantly.</p>
+    </div>
+
+    <div class="step-card glass">
+      <img src="images/Step3.jpg" alt="Step 3">
+      <h3>3. Driver Responds</h3>
+      <p>A nearby driver accepts your request and confirms your trip.</p>
+    </div>
+
+  </div>
+
+</div>
+
+</body>
+</html>

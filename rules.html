@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rules - BelHopper</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background: linear-gradient(135deg, #0a1f44, #0f2f6b, #f4b400);
+  color: #fff;
+  min-height: 100vh;
+}
+
+/* GLASS (MATCH MAIN PAGE EXACTLY) */
+.glass {
+  background: rgba(10, 31, 68, 0.4);
+  backdrop-filter: blur(12px);
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.15);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+}
+
+/* NAV (MATCH MAIN PAGE) */
+nav {
+  width: 90%;
+  margin: 20px auto;
+  padding: 15px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo-header img {
+  height: 55px;
+  filter: drop-shadow(0 0 6px rgba(244,180,0,0.5));
+}
+
+.logo-header h1 {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.tagline {
+  font-size: 11px;
+  opacity: 0.8;
+}
+
+nav a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+/* PAGE CONTAINER */
+.container {
+  width: 90%;
+  margin: 30px auto;
+  padding: 30px;
+}
+
+/* HEADER */
+.hero {
+  text-align: center;
+  padding: 30px;
+  margin-bottom: 20px;
+}
+
+.hero h1 {
+  font-size: 2rem;
+}
+
+.hero p {
+  margin-top: 10px;
+  opacity: 0.9;
+}
+
+/* SECTIONS */
+.card {
+  padding: 25px;
+  margin-bottom: 18px;
+}
+
+.card h2 {
+  margin-bottom: 12px;
+  font-size: 18px;
+}
+
+.card p {
+  line-height: 1.6;
+  margin-bottom: 10px;
+}
+
+ul {
+  margin-left: 20px;
+  margin-top: 10px;
+}
+
+li {
+  margin-bottom: 8px;
+  line-height: 1.5;
+}
+
+/* MOBILE */
+@media(max-width: 768px) {
+  nav {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .container {
+    padding: 15px;
+  }
+
+  .hero h1 {
+    font-size: 1.6rem;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAV (MATCH MAIN PAGE EXACTLY) -->
+<nav class="glass">
+  <div class="logo-header">
+    <img src="images/Logo-trans.png">
+    <div>
+      <h1>BELHOPPER</h1>
+      <div class="tagline">Your Ride. Your Way.</div>
+    </div>
+  </div>
+
+  <a href="index.html">← Back</a>
+</nav>
+
+<!-- CONTENT -->
+<div class="container">
+
+  <!-- HERO -->
+  <div class="hero glass">
+    <h1>Rules & Guidelines</h1>
+    <p>Keeping our community safe, reliable, and respectful</p>
+  </div>
+
+  <!-- INTRO -->
+  <div class="card glass">
+    <p><strong>Welcome to BelHopper Community Transport</strong></p>
+    <p>To our new and existing clients — thank you for choosing us. Please follow the rules below to ensure smooth and safe operations for everyone.</p>
+  </div>
+
+  <!-- RULES -->
+  <div class="card glass">
+    <h2>🚫 Not Allowed</h2>
+    <ul>
+      <li>No private trips outside the group system.</li>
+      <li>No lift clubs allowed.</li>
+      <li>No unsafe rushing — safety is priority.</li>
+    </ul>
+  </div>
+
+  <!-- GUIDELINES -->
+  <div class="card glass">
+    <h2>📌 Booking Guidelines</h2>
+    <ul>
+      <li>Provide full pickup details when booking.</li>
+      <li>Next-day bookings must be done before 20:30.</li>
+      <li>Be ready on time — drivers wait max 5 minutes.</li>
+      <li>Large groups (5+) must inform driver in advance.</li>
+      <li>Keep vehicles clean and respected.</li>
+      <li>Immediate payment required for EFT transfers.</li>
+      <li>Be ready in high-risk areas.</li>
+      <li>Some areas may be restricted for safety reasons.</li>
+    </ul>
+  </div>
+
+  <!-- IMPORTANT -->
+  <div class="card glass">
+    <h2>⚠️ Important Notice</h2>
+    <p>If you cancel a next-day booking on the morning of the trip, half fare will be charged.</p>
+    <p>Please cancel before your scheduled time where possible.</p>
+  </div>
+
+  <!-- FEEDBACK -->
+  <div class="card glass">
+    <h2>💬 Feedback</h2>
+    <p>We welcome both complaints and compliments. Your feedback helps us improve the service.</p>
+  </div>
+
+</div>
+
+</body>
+</html>
