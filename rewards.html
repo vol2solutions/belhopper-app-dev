@@ -183,6 +183,43 @@ footer{
 
 </nav>
 
+<!-- REWARDS MODEL -->
+<div class="glass" style="padding:20px; margin-bottom:25px; text-align:left;">
+
+  <h2 style="text-align:center; margin-bottom:15px;">
+    🏆 Rewards Model
+  </h2>
+
+  <h3 style="margin-bottom:10px;">📊 Tier System</h3>
+
+  <ul style="list-style:none; line-height:1.8; font-size:14px;">
+    <li>🟦 <strong>Blue</strong>: 0 – 19 Points</li>
+    <li>🥉 <strong>Bronze</strong>: 20 – 39 Points</li>
+    <li>🥈 <strong>Silver</strong>: 40 – 69 Points</li>
+    <li>🥇 <strong>Gold</strong>: 70 – 89 Points</li>
+    <li>💎 <strong>Elite</strong>: 90+ Points</li>
+  </ul>
+
+  <hr style="margin:15px 0; border:1px solid rgba(255,255,255,0.2);">
+
+  <h3 style="margin-bottom:10px;">🎁 Redemption Benefits</h3>
+
+  <ul style="list-style:none; line-height:1.8; font-size:14px;">
+    <li><strong>Blue:</strong> No redemptions available</li>
+    <li><strong>Bronze:</strong> R5 off internal ride OR R10 off external ride</li>
+    <li><strong>Silver:</strong> R10 off internal ride OR R15 off external ride</li>
+    <li><strong>Gold:</strong> R15 off internal ride OR R20 off external ride</li>
+    <li><strong>Elite:</strong> 2 free rides OR R30 off external ride</li>
+  </ul>
+
+  <hr style="margin:15px 0; border:1px solid rgba(255,255,255,0.2);">
+
+  <p style="font-size:13px; opacity:0.9; text-align:center;">
+    ⚠️ Limited to <strong>2 redemptions per month</strong> per client
+  </p>
+
+</div>
+
 <!-- REWARDS -->
 <section class="rewards-container glass">
 
@@ -265,8 +302,10 @@ async function checkPoints(){
     });
 
     result.innerHTML = `
-      🎉 You currently have <strong>${points}</strong> reward points.
-    `;
+  🎉 You currently have <strong>${points}</strong> reward points.<br>
+  🏆 Tier: <strong>${tier}</strong><br>
+  🎁 Benefit: ${benefits}
+`;
 
   }
   catch(error){
@@ -278,6 +317,30 @@ async function checkPoints(){
     `;
   }
 
+}
+
+  let tier = "";
+let benefits = "";
+
+if(points >= 90){
+  tier = "💎 Elite";
+  benefits = "2 free rides OR R30 off external ride";
+}
+else if(points >= 70){
+  tier = "🥇 Gold";
+  benefits = "R15 off internal OR R20 off external ride";
+}
+else if(points >= 40){
+  tier = "🥈 Silver";
+  benefits = "R10 off internal OR R15 off external ride";
+}
+else if(points >= 20){
+  tier = "🥉 Bronze";
+  benefits = "R5 off internal OR R10 off external ride";
+}
+else{
+  tier = "🟦 Blue";
+  benefits = "No redemptions available";
 }
 
 </script>
