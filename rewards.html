@@ -20,8 +20,16 @@ body{
   min-height:100vh;
 }
 
+/* PAGE WRAPPER (FIX FOR ALIGNMENT) */
+.page-wrap{
+  width:90%;
+  max-width:900px;
+  margin:0 auto;
+}
+
 /* GLASS */
 .glass{
+  width:100%;
   background: rgba(10, 31, 68, 0.4);
   backdrop-filter: blur(12px);
   border-radius:16px;
@@ -31,7 +39,6 @@ body{
 
 /* NAV */
 nav{
-  width:90%;
   margin:20px auto;
   padding:15px 30px;
   display:flex;
@@ -73,13 +80,11 @@ nav a:hover{
   opacity:0.8;
 }
 
-/* MAIN */
+/* REWARDS CONTENT */
 .rewards-container{
-  width:90%;
-  max-width:700px;
-  margin:40px auto;
   padding:40px;
   text-align:center;
+  margin-top:25px;
 }
 
 .rewards-container h1{
@@ -163,12 +168,13 @@ footer{
 
 <body>
 
+<div class="page-wrap">
+
 <!-- NAV -->
 <nav class="glass">
 
   <div class="logo-header">
     <img src="images/Logo-trans.png">
-
     <div>
       <h1>BELHOPPER</h1>
       <div class="tagline">Your Ride. Your Way.</div>
@@ -184,7 +190,7 @@ footer{
 </nav>
 
 <!-- REWARDS MODEL -->
-<div class="glass" style="padding:20px; margin-bottom:25px; text-align:left;">
+<div class="glass" style="padding:20px; margin-top:25px; text-align:left;">
 
   <h2 style="text-align:center; margin-bottom:15px;">
     🏆 Rewards Model
@@ -238,11 +244,7 @@ footer{
   <!-- FORM -->
   <div class="points-form">
 
-    <input
-      type="tel"
-      id="phone"
-      placeholder="Enter your phone number"
-    >
+    <input type="tel" id="phone" placeholder="Enter your phone number">
 
     <button class="btn" onclick="checkPoints()">
       Check Points
@@ -258,6 +260,8 @@ footer{
   Developed by Vol.2 Solutions
 </footer>
 
+</div>
+
 <script>
 
 async function checkPoints(){
@@ -265,7 +269,6 @@ async function checkPoints(){
   const phone = document.getElementById("phone").value.trim();
   const result = document.getElementById("result");
 
-  // VALIDATION
   const phonePattern = /^0\d{9}$/;
 
   if(!phonePattern.test(phone)){
@@ -277,70 +280,59 @@ async function checkPoints(){
 
   try{
 
-    // FETCH DATA FROM GOOGLE SHEETS
     const response = await fetch(
       "https://script.google.com/macros/s/AKfycbwgYCzw9G_-sPRp1ayTPUiHqva0OppBLEdWozY22KcDES1d7p9Dy4EbS-xMSKsopy1JQw/exec"
     );
 
     const data = await response.json();
 
-    // REMOVE FIRST 0 FROM USER NUMBER
     const formattedPhone = phone.substring(1);
 
-    // COUNT MATCHES
     let points = 0;
 
     data.forEach(row => {
-
-      // SHEET PHONE COLUMN
       const sheetPhone = String(row.phone).trim();
-
       if(sheetPhone === formattedPhone){
         points++;
       }
-
     });
 
+    let tier = "";
+    let benefits = "";
+
+    if(points >= 90){
+      tier = "💎 Elite";
+      benefits = "2 free rides OR R30 off external ride";
+    }
+    else if(points >= 70){
+      tier = "🥇 Gold";
+      benefits = "R15 off internal OR R20 off external ride";
+    }
+    else if(points >= 40){
+      tier = "🥈 Silver";
+      benefits = "R10 off internal OR R15 off external ride";
+    }
+    else if(points >= 20){
+      tier = "🥉 Bronze";
+      benefits = "R5 off internal OR R10 off external ride";
+    }
+    else{
+      tier = "🟦 Blue";
+      benefits = "No redemptions available";
+    }
+
     result.innerHTML = `
-  🎉 You currently have <strong>${points}</strong> reward points.<br>
-  🏆 Tier: <strong>${tier}</strong><br>
-  🎁 Benefit: ${benefits}
-`;
+      🎉 You currently have <strong>${points}</strong> reward points.<br>
+      🏆 Tier: <strong>${tier}</strong><br>
+      🎁 Benefit: ${benefits}
+    `;
 
   }
   catch(error){
-
     console.error(error);
-
-    result.innerHTML = `
-      Unable to check points right now.
-    `;
+    result.innerHTML = "Unable to check points right now.";
   }
 
-}
-
-  let tier = "";
-let benefits = "";
-
-if(points >= 90){
-  tier = "💎 Elite";
-  benefits = "2 free rides OR R30 off external ride";
-}
-else if(points >= 70){
-  tier = "🥇 Gold";
-  benefits = "R15 off internal OR R20 off external ride";
-}
-else if(points >= 40){
-  tier = "🥈 Silver";
-  benefits = "R10 off internal OR R15 off external ride";
-}
-else if(points >= 20){
-  tier = "🥉 Bronze";
-  benefits = "R5 off internal OR R10 off external ride";
-}
-else{
-  tier = "🟦 Blue";
-  benefits = "No redemptions available";
 }
 
 </script>
